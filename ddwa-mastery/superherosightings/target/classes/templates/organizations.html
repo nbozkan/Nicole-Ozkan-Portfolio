@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Superhero Sightings</title>
+  </head>
+  <body>
+    <!-- Main Body of Page -->
+    <div class="container">
+        <div class="row m-4">
+            <div class="col text-center border border-dark">
+                <h1><a href="/" class="text-dark">Superhero Sightings</a></h1>
+            </div>
+        </div>
+        <div class="row m-4 border border-dark">
+            <div class="col text-center m-3">
+                <a href="supers" class="btn btn-outline-primary btn-lg">Supers</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="powers" class="btn btn-outline-primary btn-lg">Powers</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+            </div>
+        </div>
+        <div class="row m-4 border border-dark">
+            <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
+            </div>
+            <div class="col-3 text-center m-3">
+                <span class="h3">Add Organization</span>
+            </div>
+            <div class="col-7 text-center m-3">
+                <form action="addOrganization" method="POST">
+                    <div class="form-group row">
+                        <label for="orgName" class="col-3 col-form-label">Organization Name</label>
+                        <div class="col-9">
+                            <input type="text" id="orgName" name="orgName" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="orgDescription" class="col-3 col-form-label">Organization Description</label>
+                        <div class="col-9">
+                            <input type="text" id="orgDescription" name="orgDescription" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="address1" class="col-3 col-form-label">Address 1</label>
+                        <div class="col-9">
+                            <input type="text" id="address1" name="address.address1" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="address2" class="col-3 col-form-label">Address 2</label>
+                        <div class="col-9">
+                            <input type="text" id="address2" name="address.address2" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="city" class="col-3 col-form-label">City</label>
+                        <div class="col-9">
+                            <input type="text" id="city" name="address.city" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="state" class="col-3 col-form-label">State</label>
+                        <div class="col-9">
+                            <select id="state" name="address.state" class="form-control">
+                                <option th:each="state : ${states}" th:value="${state.stateAbbrev}" th:text="${state.stateName}">State Name</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="zipCode" class="col-3 col-form-label">Zipcode</label>
+                        <div class="col-9">
+                            <input type="text" id="zipCode" name="address.zipCode" class="form-control" placeholder="ex:12345"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="zipExtension" class="col-3 col-form-label">Zip Extension</label>
+                        <div class="col-9">
+                            <input type="text" id="zipExtension" name="address.zipExtension" class="form-control" placeholder="ex:1234"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="contactName" class="col-3 col-form-label">Contact Name</label>
+                        <div class="col-9">
+                            <input type="text" id="contactName" name="contact.contactName" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="emailAddress" class="col-3 col-form-label">Email Address</label>
+                        <div class="col-9">
+                            <input type="text" id="emailAddress" name="contact.emailAddress" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="phoneNumber" class="col-3 col-form-label">Phone Number</label>
+                        <div class="col-9">
+                            <input type="text" id="phoneNumber" name="contact.phoneNumber" placeholder="ex:1234567890"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="supers" class="col-3 col-form-label">Organization Members</label>
+                        <div class="col-9">
+                            <select id="supers" name="superId" class="form-control" multiple>
+                                <option th:each="super : ${supers}" th:value="${super.superId}" th:text="${super.superName}">Super Name</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Organization</button>
+                </form>
+            </div>
+        </div>
+        <div class="row m-4 border border-dark">
+            <div class="col text-center m-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Organization Name</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="organization : ${organizations}">
+                            <td th:text="${organization.orgName}">Organization Name</td>
+                            <td><a href="#" th:href="@{/organization(orgId=${organization.orgId})}">Details</a></td>
+                            <td><a href="#" th:href="@{/editOrganization(orgId=${organization.orgId})}">Edit</a></td>
+                            <td><a href="#" th:href="@{/deleteOrganization(orgId=${organization.orgId})}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End main body -->
+    
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>;

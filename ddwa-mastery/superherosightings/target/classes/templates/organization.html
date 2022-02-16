@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Superhero Sightings</title>
+  </head>
+  <body>
+    <!-- Main Body of Page -->
+    <div class="container">
+        <div class="row m-4">
+            <div class="col text-center border border-dark">
+                <h1><a href="/" class="text-dark">Superhero Sightings</a></h1>
+            </div>
+        </div>
+        <div class="row m-4 border border-dark">
+            <div class="col text-center m-3">
+                <a href="supers" class="btn btn-outline-primary btn-lg">Supers</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="powers" class="btn btn-outline-primary btn-lg">Powers</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+            </div>
+        </div>
+        <div class="row m-4 border border-dark">
+            <div class="col-6 text-right"><strong>Organization Name</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.orgName}">displayName</span>
+                </div>
+            <div class="col-6 text-right"><strong>Organization Description</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.orgDescription}">displayDescription</span>
+                </div>
+            <div class="col-6 text-right"><strong>Address 1</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.address.address1}">displayAddress1</span>
+                </div>
+            <div class="col-6 text-right"><strong>Address 2</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.address.address2}">displayAddress2</span>
+                </div>
+            <div class="col-6 text-right"><strong>City</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.address.city}">displayCity</span>
+                </div>
+            <div class="col-6 text-right"><strong>State</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.address.state}">displayState</span>
+                </div>
+            <div class="col-6 text-right"><strong>Zipcode</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.address.zipCode} + '-' + ${organization.address.zipExtension}">displayZipCode</span>
+                </div>
+            <div class="col-6 text-right"><strong>Contact Name</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.contact.contactName}">displayContactName</span>
+                </div>
+            <div class="col-6 text-right"><strong>Email Address</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.contact.emailAddress}">displayEmailAddress</span>
+                </div>
+            <div class="col-6 text-right"><strong>Phone Number</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${organization.contact.phoneNumber}">displayPhoneNumber</span>
+                </div>
+            <div class="col-6 text-right"><strong>Supers</strong></div>
+                <div class="col-6 text-left">
+                    <span th:each="super : ${organization.supers}">
+                        <span th:text="${super.superName}">displaySuper</span><br/>
+                    </span>
+                </div>
+            <div class="col text-center m-3">
+                <a class="btn btn-outline-primary btn-lg" href="#" th:href="@{/editOrganization(orgId=${organization.orgId})}">Edit</a>
+                <a class="btn btn-outline-primary btn-lg" href="#" th:href="@{/deleteOrganization(orgId=${organization.orgId})}">Delete</a>
+            </div>
+        </div>
+    </div>
+    <!-- End main body -->
+    
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>;

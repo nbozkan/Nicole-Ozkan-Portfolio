@@ -1,0 +1,21 @@
+.container {
+    text-align: center;
+    
+}
+label {
+    font-size: 25px;
+}
+#itemGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#itemBlock {
+    width: 160px;
+    height: 200px;
+    margin: 20px;
+    border: darkslategrey;
+    border-style: solid;
+}
+#changeBox {
+    width: 300px;
+}
